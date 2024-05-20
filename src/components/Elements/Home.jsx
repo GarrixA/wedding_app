@@ -20,33 +20,6 @@ const Home = () => {
 
 	const currentAlbum = wedding_data[currentIndex];
 
-	const myVariants = {
-		hidden: {
-			opacity: 0,
-			scale: -10,
-		},
-
-		visible: {
-			opacity: 1,
-			scale: 1,
-			transition: {
-				type: "spring",
-				delay: 1,
-				ease: "linear",
-			},
-		},
-
-		visibleSides: {
-			opacity: 1,
-			scale: 1,
-			transition: {
-				type: "spring",
-				delay: 1.2,
-				ease: "linear",
-			},
-		},
-	};
-
 	const slideVariants = {
 		initial: (direction) => ({
 			x: direction > 0 ? 200 : -200,
