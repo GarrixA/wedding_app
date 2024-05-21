@@ -30,3 +30,17 @@ body {
 	max-height: 100vh;
 	overflow: hidden;
 }
+
+.next:hover,
+.prev:hover {
+	scale: 1.4;
+	background-color: #ffcc65;
+	transition: 0.4s ease-in-out;
+	font-weight: 900;
+}
+
+.next:active,
+.prev:active {
+	scale: 0.8;
+	background-color: #ffcc65;
+}
