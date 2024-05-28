@@ -3,8 +3,9 @@ import image from "../Images/Jacaranda-Country-club-wedding-photographer-florida
 const Testimonies = () => {
 	return (
 		<>
-			<div className="testimonies h-[83vh] flex justify-between mx-[10%]">
-				<div className="left_testimonial bg-red-500 rounded overflow-hidden flex-1">
+			<div className="testimonies h-[80vh] flex justify-between mx-[10%] py-8 sm:flex-row flex-col">
+				<div className="left_testimonial rounded overflow-hidden flex-1 relative">
+					<div className="port absolute w-full h-full bg-black opacity-30"></div>
 					<img src={image} alt="image" className="w-full object-cover h-full" />
 				</div>
 				<div className="right_testimonial flex-1 bg-white rounded-r overflow-hidden">

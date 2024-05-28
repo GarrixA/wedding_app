@@ -5,7 +5,7 @@ import Testimonies from "../Elements/Testimonies";
 
 const Navbar = () => {
 	return (
-		<div className="main-nav flex items-center justify-between mx-[10%] py-10 z-20 w-full max-w-[80%]">
+		<div className="main-nav flex items-center justify-between py-8 z-20 w-full px-[10%] shadow-md">
 			<div className="owners">
 				<Link to={"/"}>
 					<motion.h1
