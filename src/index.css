@@ -29,6 +29,7 @@ body {
 	overflow-x: hidden;
 	max-height: 100vh;
 	overflow: hidden;
+	background-color: #4793af;
 }
 
 .next:hover,
@@ -43,4 +44,9 @@ body {
 .prev:active {
 	scale: 0.8;
 	background-color: #ffcc65;
+	color: #008dda;
+}
+
+.testimony {
+	overflow-y: scroll;
 }
