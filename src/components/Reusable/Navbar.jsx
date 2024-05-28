@@ -13,7 +13,7 @@ const Navbar = () => {
 					Isaac & Fatma
 				</motion.h1>
 			</div>
-			<div className="others flex gap-3">
+			<div className="others sm:flex gap-3 hidden">
 				<h1 className="text-blue-500 cursor-pointer font-bold">Story</h1>
 				<h1 className="text-blue-500 cursor-pointer font-bold">Testimonials</h1>
 			</div>
