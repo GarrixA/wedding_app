@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import wedding_data from "../Mock";
 import { motion, AnimatePresence } from "framer-motion";
-import { slideVariants } from "../Mock/variants";
+import { slideVariants, titleVariants } from "../Mock/variants";
 import { handleNext, handlePrev } from "../Mock/handlers";
-import { titleVariants } from "../Mock/variants";
 import { GrNext, GrPrevious } from "react-icons/gr";
 
 const Home = () => {
@@ -34,7 +33,7 @@ const Home = () => {
 						key={
 							currentAlbum.album1 || currentAlbum.album2 || currentAlbum.album3
 						}
-						className="font-black sm:text-4xl absolute text-center sm:w-full sm:top-1 text-xl z-50 sm:bg-transparent -top-10 flex items-center justify-center bg-blue-500 px-4 py-2 rounded mt-[85%] sm:mt-0"
+						className="font-black sm:text-4xl absolute text-center sm:w-full sm:top-8 text-xl z-50 sm:z-10 sm:bg-transparent -top-10 flex items-center justify-center bg-blue-500 px-4 rounded mt-[85%] sm:mt-0"
 						variants={titleVariants}
 						initial="initial"
 						animate="animate"
@@ -54,7 +53,7 @@ const Home = () => {
 							exit="exit"
 							custom={direction}
 						>
-							<Link to={getAlbumRoute(currentIndex)}>
+							<Link to={getAlbumRoute(currentIndex)} className="relative">
 								<img
 									src={currentAlbum.image1}
 									alt={
@@ -64,6 +63,7 @@ const Home = () => {
 									}
 									className="w-full h-full object-cover border sm:border-none sm:mt-0 sm:rounded rounded-3xl"
 								/>
+								<div className="imageOverlay absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"></div>
 							</Link>
 						</motion.div>
 					</AnimatePresence>
@@ -87,6 +87,7 @@ const Home = () => {
 									}
 									className="w-full h-full object-cover border sm:border-none"
 								/>
+								<div className="imageOverlay absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"></div>
 							</Link>
 						</motion.div>
 					</AnimatePresence>
@@ -110,6 +111,7 @@ const Home = () => {
 									}
 									className="w-full h-full object-cover border sm:border-none sm:mt-0 rounded-3xl sm:rounded"
 								/>
+								<div className="imageOverlay absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"></div>
 							</Link>
 						</motion.div>
 					</AnimatePresence>
@@ -118,7 +120,7 @@ const Home = () => {
 					onClick={() =>
 						handlePrev(setCurrentIndex, setDirection, wedding_data)
 					}
-					className="prev absolute sm:-left-[8%] -left-[10%] top-1/2 transform -translate-y-1/2 bg-black text-white sm:p-2 p-1 rounded-full  z-50 "
+					className="prev absolute sm:-left-[8%] -left-[10%] top-1/2 transform -translate-y-1/2 bg-black text-white sm:p-2 p-1 rounded-full z-50"
 				>
 					<GrPrevious />
 				</button>
@@ -126,7 +128,7 @@ const Home = () => {
 					onClick={() =>
 						handleNext(setCurrentIndex, setDirection, wedding_data)
 					}
-					className="next absolute sm:-right-[8%] -right-[10%] top-1/2 transform -translate-y-1/2 bg-black text-white sm:p-2 p-1 rounded-full z-50 "
+					className="next absolute sm:-right-[8%] -right-[10%] top-1/2 transform -translate-y-1/2 bg-black text-white sm:p-2 p-1 rounded-full z-50"
 				>
 					<GrNext />
 				</button>
