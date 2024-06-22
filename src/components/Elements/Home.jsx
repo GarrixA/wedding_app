@@ -27,13 +27,13 @@ const Home = () => {
 
 	return (
 		<>
-			<motion.div className="relative mx-[10%] h-[82vh] flex justify-center items-center">
+			<motion.div className=" home relative mx-[10%] h-[90vh] flex justify-center items-center mt-5">
 				<AnimatePresence>
 					<motion.h1
 						key={
 							currentAlbum.album1 || currentAlbum.album2 || currentAlbum.album3
 						}
-						className="font-black sm:text-4xl absolute text-center sm:w-full sm:top-8 text-xl z-50 sm:z-10 sm:bg-transparent -top-10 flex items-center justify-center bg-blue-500 px-4 rounded mt-[85%] sm:mt-0"
+						className="font-black sm:text-4xl absolute text-center sm:w-full sm:top-8 text-xl z-50 sm:z-10 sm:bg-transparent -top-10 flex items-center justify-center bg-blue-500 px-4 rounded mt-[85%] sm:mt-0 lg:top-4"
 						variants={titleVariants}
 						initial="initial"
 						animate="animate"
@@ -46,7 +46,7 @@ const Home = () => {
 					<AnimatePresence custom={direction}>
 						<motion.div
 							key={currentAlbum.image1}
-							className="absolute left-0 sm:w-[60%] md:w-[50%] cursor-pointer rounded overflow-hidden flex flex-col sm:px-0 px-4 min-w-sum"
+							className="absolute left-0 sm:w-[60%] md:w-[50%] lg:w-[60%] cursor-pointer rounded overflow-hidden flex flex-col sm:px-0 px-4 min-w-sum"
 							variants={slideVariants}
 							initial="initial"
 							animate="animate"
@@ -63,14 +63,14 @@ const Home = () => {
 									}
 									className="w-full h-full object-cover border sm:border-none sm:mt-0 sm:rounded rounded-3xl"
 								/>
-								<div className="imageOverlay absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"></div>
+								<div className="imageOverlay absolute inset-0 bg-black bg-opacity-20  hidden sm:flex"></div>
 							</Link>
 						</motion.div>
 					</AnimatePresence>
 					<AnimatePresence custom={direction}>
 						<motion.div
 							key={currentAlbum.image2}
-							className="blockquote absolute z-10 sm:w-[70%] md:w-[65%] cursor-pointer sm:rounded rounded-3xl overflow-hidden shadow-md left-0 sm:left-[15%] w-full h-[50%] md:h-[70%] sm:mt-0 mt-[35%]"
+							className="blockquote absolute z-10 sm:w-[70%] md:w-[65%] cursor-pointer sm:rounded rounded-3xl overflow-hidden shadow-md left-0 sm:left-[15%] w-full h-[50%] md:h-[70%] sm:mt-0 mt-[35%] lg:h-[80%]"
 							variants={slideVariants}
 							initial="initial"
 							animate="animate"
@@ -87,14 +87,14 @@ const Home = () => {
 									}
 									className="w-full h-full object-cover border sm:border-none"
 								/>
-								<div className="imageOverlay absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"></div>
+								<div className="imageOverlay absolute inset-0 bg-black sm:bg-opacity-20 bg-opacity-10"></div>
 							</Link>
 						</motion.div>
 					</AnimatePresence>
 					<AnimatePresence custom={direction}>
 						<motion.div
 							key={currentAlbum.image3}
-							className="absolute right-0 sm:w-[60%] md:w-[50%] cursor-pointer sm:rounded rounded-3xl overflow-hidden sm:px-0 px-4 sm:mt-0 mt-[95%]"
+							className="absolute right-0 sm:w-[60%] md:w-[50%] lg:w-[60%] cursor-pointer sm:rounded rounded-3xl overflow-hidden sm:px-0 px-4 sm:mt-0 mt-[95%]"
 							variants={slideVariants}
 							initial="initial"
 							animate="animate"
@@ -111,7 +111,7 @@ const Home = () => {
 									}
 									className="w-full h-full object-cover border sm:border-none sm:mt-0 rounded-3xl sm:rounded"
 								/>
-								<div className="imageOverlay absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"></div>
+								<div className="imageOverlay absolute inset-0 bg-black bg-opacity-20 hidden sm:flex"></div>
 							</Link>
 						</motion.div>
 					</AnimatePresence>

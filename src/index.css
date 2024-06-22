@@ -5,7 +5,7 @@
 
 	color-scheme: light dark;
 	color: rgba(255, 255, 255, 0.87);
-	background-color: #0a0908;
+	background-color: #4793af;
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -23,13 +23,16 @@
 @tailwind components;
 @tailwind utilities;
 
+.album_image {
+	overflow: scroll;
+}
+
 body {
 	margin: 0;
 	max-width: 100%;
 	overflow-x: hidden;
-	max-height: 100vh;
 	overflow: hidden;
-	background-color: #4793af;
+	color: #252522;
 }
 
 .next:hover,
@@ -49,4 +52,61 @@ body {
 
 .testimony {
 	overflow-y: scroll;
+}
+
+.before_marriage:hover {
+	scale: 1.1;
+	transition: 0.5s ease-in-out;
+}
+.before_marriage:active {
+	scale: 0.8;
+	transition: 0.5s ease-in-out;
+}
+
+.after_marriage:hover {
+	scale: 1.1;
+	transition: 0.5s ease-in-out;
+}
+.after_marriage:active {
+	scale: 0.8;
+	transition: 0.5s ease-in-out;
+}
+
+.single_paragraph p {
+	padding-right: 1rem;
+}
+
+/* .active {
+	background-color: #ffcc65;
+} */
+
+._shadow {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+._image_hover:hover {
+	scale: 1.2;
+	z-index: 9;
+	position: relative;
+	transition: 1s ease-in-out;
+	cursor: pointer;
+}
+
+._buttons:hover {
+	scale: 1.1;
+	transition: 0.7s ease-in-out;
+}
+._actions:hover {
+	scale: 1.8;
+	transition: 0.7s ease-in-out;
+}
+
+._close:hover {
+	background-color: rgb(156, 11, 11);
+	color: white;
+	transition: 0.7s ease-in-out;
+}
+
+._bg_blue {
+	background-color: #dff5ff;
 }
