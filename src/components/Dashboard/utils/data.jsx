@@ -57,4 +57,5 @@ export const Images = [
 	{ image: image6 },
 	{ image: image7 },
 	{ image: image8 },
+	{ image: image1 },
 ];
