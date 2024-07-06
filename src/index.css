@@ -110,3 +110,18 @@ body {
 ._bg_blue {
 	background-color: #dff5ff;
 }
+
+._links:hover {
+	background-color: #4793af;
+	color: #fff;
+	scale: 1.1;
+	transition: 0.5s ease-in-out;
+	border-radius: 4px;
+	padding-left: 5px;
+}
+
+._back:hover {
+	color: #ffcc65;
+	transition: 0.6s ease-in-out;
+	transform: scaleX(1.5);
+}

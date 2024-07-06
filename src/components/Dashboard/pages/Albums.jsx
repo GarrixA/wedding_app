@@ -1,90 +1,184 @@
-import { useState } from "react";
-import { IoClose } from "react-icons/io5";
-import { MdDelete } from "react-icons/md";
-import { MdEdit } from "react-icons/md";
-import { IoMdAddCircle } from "react-icons/io";
+import { useEffect, useState } from "react";
+import { IoMdAddCircle, IoMdAlert } from "react-icons/io";
+import { MdDelete, MdEdit } from "react-icons/md";
+import { API } from "../../../../utils/api";
+import {
+	fetchAlbumFailure,
+	fetchAlbumStart,
+	fetchAlbumSuccess,
+} from "../../../redux/feature/albumSlices";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hooks";
+import AlbumModal from "../components/AlbumModale";
+import { InfinitySpin } from "react-loader-spinner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Albums() {
-	const [modalOpen, setModalOpen] = useState(false);
-	const toggleModal = () => {
-		setModalOpen(!modalOpen);
+	const [deleteModal, setDeleteModal] = useState(false);
+	const [deleteAlbumId, setDeleteAlbumId] = useState(null);
+
+	const toggleDeleteModal = (id) => {
+		setDeleteAlbumId(id);
+		setDeleteModal(!deleteModal);
 	};
 
-	const albums = [
-		{
-			name: "Album 1",
-		},
-		{
-			name: "Album 2",
-		},
-		{
-			name: "Album 3",
-		},
-	];
+	const [load, setLoad] = useState(false);
+	const token = localStorage.getItem("token");
+	const dispatch = useAppDispatch();
+
+	const {
+		data: album,
+		loading,
+		error,
+	} = useAppSelector((state) => state.album);
+
+	const fetchAlbums = async () => {
+		dispatch(fetchAlbumStart());
+		try {
+			const response = await API.get("rubumu/all");
+			const albums_data = response.data.allalbums;
+			if (Array.isArray(albums_data)) {
+				dispatch(fetchAlbumSuccess(albums_data));
+			} else {
+				throw new Error("Data format is not an array");
+			}
+		} catch (error) {
+			console.error("Failed to fetch albums", error);
+			dispatch(fetchAlbumFailure("Failed to fetch albums"));
+		}
+	};
+
+	const deleteAlbum = async (id) => {
+		setLoad(true);
+		try {
+			const response = await API.delete(`rubumu/delete/${id}`, {
+				headers: {
+					Authorization: `${token}`,
+				},
+			});
+			setLoad(false);
+			toggleDeleteModal();
+			dispatch(fetchAlbumSuccess(album.filter((item) => item.id !== id)));
+			toast.success(response.data.message);
+		} catch (error) {
+			toast.error(error.message);
+			setLoad(false);
+		}
+	};
+
+	useEffect(() => {
+		if (!album.length) {
+			fetchAlbums();
+		}
+	}, [dispatch, album.length]);
+
+	const [modalOpen, setModalOpen] = useState(false);
+	const [selectedAlbum, setSelectedAlbum] = useState(null);
+
+	const openModal = (album) => {
+		setSelectedAlbum(album);
+		setModalOpen(true);
+	};
+
+	const closeModal = () => {
+		setSelectedAlbum(null);
+		setModalOpen(false);
+	};
+
 	return (
 		<>
-			<div className="container bg-white py-10 max-w-[95%] mt-10 rounded  m-auto">
-				<div className="wrapper max-w-[80%] m-auto flex flex-col gap- mt-5">
-					<div className="top flex  justify-between rounded-md px-8 w-full py-2 ml-4  font-bold text-2xl">
-						<h1>Albums </h1>
+			<div className="container bg-white py-10 max-w-[95%] mt-10 rounded m-auto">
+				<div className="wrapper max-w-[80%] m-auto flex flex-col gap-5 mt-5">
+					<div className="top flex justify-between rounded-md px-8 w-full py-2 ml-4 font-bold text-2xl">
+						<h1>{album.length} Albums </h1>
 						<button
-							className=" flex items-center gap-2 bg-[#4793af] text-white tex-md py-1 px-4 rounded-md"
-							onClick={toggleModal}
+							className="flex items-center gap-2 bg-[#4793af] text-white tex-md py-1 px-4 rounded-md"
+							onClick={() => openModal(null)}
 						>
 							Add <IoMdAddCircle />
 						</button>
 					</div>
-					<div className="albums bg-white w-full flex flex-col m-5 _shadow rounded-md">
-						{albums.map((item) => (
-							<div className="flex justify-between hover:bg-slate-300 px-8 py-4 items-center text-xl font-bold border-b">
-								{item.name}{" "}
-								<div className="flex gap-2 ">
-									<MdEdit
-										className=" text-2xl _actions text-green-500 cursor-pointer"
-										onClick={toggleModal}
+					<div className="w-full max-h-[60vh] overflow-auto p-2">
+						<div className="albums bg-white w-full flex flex-col _shadow rounded-md">
+							{loading ? (
+								<div className="fixed inset-0 w-full h-full flex items-center justify-center ml-64">
+									<InfinitySpin
+										visible={true}
+										width="500"
+										color="#FFFFFF"
+										ariaLabel="infinity-spin-loading"
 									/>
-									<MdDelete className=" text-2xl _actions text-red-800 cursor-pointer" />
 								</div>
-							</div>
-						))}
-					</div>
-				</div>
-			</div>
-			{modalOpen && (
-				<div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50">
-					<div
-						className="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"
-						onClick={toggleModal}
-					></div>
-					<div className="modal-container bg-white w-[20%] mx-auto rounded shadow-lg z-50 overflow-y-auto">
-						<div className="modal-content py-4 text-left px-6">
-							<span
-								className="modal-close cursor-pointer absolute top-0 right-0 p-4"
-								onClick={toggleModal}
-							>
-								<IoClose className="text-7xl bg-white rounded-full _close" />
-							</span>
-							<div className="modal-body p-4 flex flex-col gap-2 text-lg font-semibold">
-								<h1 className="text-center">Add album</h1>
-								<form className="flex flex-col gap-2">
-									<label> Album name</label>
-									<input
-										type="text"
-										placeholder="add album name"
-										className="bg-white rounded p-2  border-2"
-									/>
-									<button
-										type="submit"
-										className="bg-[#4793af] rounded-sm text-white _buttons"
-									>
-										Add
-									</button>
-								</form>
-							</div>
+							) : (
+								<>
+									{album.map((item) => (
+										<div
+											key={item.id}
+											className="flex justify-between hover:bg-slate-300 px-8 py-4 items-center text-xl font-bold border-b"
+										>
+											{item.name}
+											<div className="flex gap-2">
+												<MdEdit
+													className="text-2xl _actions text-green-500 cursor-pointer"
+													onClick={() => openModal(item)}
+												/>
+												<MdDelete
+													className="text-2xl _actions text-red-800 cursor-pointer"
+													onClick={() => toggleDeleteModal(item.id)}
+												/>
+											</div>
+											{deleteModal && deleteAlbumId === item.id && (
+												<div className="fixed w-full h-full bg-black/10 inset-0 flex justify-center items-center">
+													<div className="alert w-1/4 h-1/5 bg-white flex flex-col gap-2 py-4">
+														<h1 className=" flex items-center text-center text-xl font-semibold justify-center gap-2">
+															<IoMdAlert className="text-3xl text-[#ffcc65]" />
+															Delete Album
+														</h1>
+														<h1 className="p-2 text-[1rem] font-semibold">
+															Are you sure you want to delete this?
+														</h1>
+														<div className="buttons flex items-center justify-center gap-4 h-full">
+															<button
+																className="text-xl flex items-center justify-center font-semibold bg-blue-700 rounded text-white px-6 py-1"
+																onClick={() => deleteAlbum(item.id)}
+															>
+																{load ? "Deleting..." : "Yes"}
+															</button>
+															<button
+																className="text-xl font-semibold border border-green-700 rounded px-4 py-1"
+																onClick={() => toggleDeleteModal(null)}
+															>
+																No
+															</button>
+														</div>
+													</div>
+												</div>
+											)}
+										</div>
+									))}
+								</>
+							)}
 						</div>
 					</div>
 				</div>
-			)}
+				<ToastContainer
+					position="top-right"
+					autoClose={5000}
+					hideProgressBar={false}
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss
+					draggable
+					pauseOnHover
+					theme="colored"
+				/>
+			</div>
+			<AlbumModal
+				modalOpen={modalOpen}
+				closeModal={closeModal}
+				album={selectedAlbum}
+			/>
 		</>
 	);
 }
