@@ -1,35 +1,77 @@
-import { useState } from "react";
-import image from "../Images/Jacaranda-Country-club-wedding-photographer-florida-venue-sonju-diana-marcos30.jpg";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { RiAddCircleLine } from "react-icons/ri";
-import { validateForm } from "../Mock/validations";
+import { API } from "../../../utils/api";
+import {
+	addTestimonyFailure,
+	addTestimonyStart,
+	addTestimonySuccess,
+	getTestimonyFailure,
+	getTestimonyStart,
+	getTestimonySuccess,
+} from "../../redux/feature/testimonySlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import image from "../Images/Jacaranda-Country-club-wedding-photographer-florida-venue-sonju-diana-marcos30.jpg";
+import { InfinitySpin } from "react-loader-spinner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Testimonies = () => {
 	const [openModel, setOpenModel] = useState(false);
-	const [name, setName] = useState("");
-	const [testimonial, setTestimonial] = useState("");
-	const [nameError, setNameError] = useState("");
-	const [testimonialError, setTestimonialError] = useState("");
+	const dispatch = useAppDispatch();
+	const {
+		data: testimony,
+		loading,
+		error,
+	} = useAppSelector((state) => state.testimony);
+
+	const addTestimony = async (data) => {
+		dispatch(addTestimonyStart());
+		try {
+			const response = await API.post("testimony/add", data);
+			const testimony = response.data;
+			dispatch(addTestimonySuccess(testimony));
+			await getTestimony();
+			setOpenModel(false);
+			toast.success(response.data.message);
+		} catch (error) {
+			console.error("Failed to add testimony", error);
+			dispatch(addTestimonyFailure("Failed to add testimony"));
+			toast.error(error?.response?.data.message);
+		}
+	};
+
+	const getTestimony = async () => {
+		dispatch(getTestimonyStart());
+		try {
+			const response = await API.get("testimony/All");
+			const testimony = response.data.all_testimonys;
+			dispatch(getTestimonySuccess(testimony));
+		} catch (error) {
+			console.error("Failed to get testimony", error);
+			dispatch(getTestimonyFailure("Failed to get testimony"));
+			toast.error(error?.response?.data.message);
+		}
+	};
+
+	useEffect(() => {
+		if (!testimony) {
+			getTestimony();
+		}
+	}, [dispatch, testimony]);
+
+	const validTestimony = (text) => {
+		const wordCount = text.trim().split(/\s+/).length;
+		return wordCount >= 10 || "Testimony must be at least 10 words";
+	};
 
 	const handleModel = () => {
 		setOpenModel(!openModel);
 	};
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-
-		const { errors, isValid } = validateForm(name, testimonial);
-
-		setNameError(errors.nameError);
-		setTestimonialError(errors.testimonialError);
-
-		if (isValid) {
-			console.log("Form submitted:", { name, testimonial });
-			setName("");
-			setTestimonial("");
-			setOpenModel(false);
-		}
-	};
-
+	const form = useForm();
+	const { register, control, handleSubmit, formState } = form;
+	const { errors } = formState;
 	return (
 		<>
 			<div className="wrapper h-[100vh]">
@@ -53,69 +95,29 @@ const Testimonies = () => {
 					</div>
 					<div className="right_testimonial flex-1 bg-white rounded-r overflow-hidden">
 						<h1 className="text-center text-xl font-bold bg-[#40679E] p-2">
-							Testimonies
+							{testimony?.length} Testimonies
 						</h1>
 						<div className="testimony text-black p-4 flex flex-col gap-4 max-h-[70vh] overflow-y-auto h-full pb-16">
-							<h1>
-								"You did a wonderful job for us and I am very grateful for the
-								expert input you provided in advance of the big day. We had a
-								wonderful day and that is in no small part to your work. The
-								Signet Library is a terrific venue and had a real ‘wow’ factor
-								for our guests. In addition to that the service, food, lighting
-								and indeed everything was from the very top drawer. You are an
-								‘Event Designer Extraordinaire’" by{" "}
-								<span className="font-bold">Mugabo</span>
-							</h1>
-							<h1>
-								"You did a wonderful job for us and I am very grateful for the
-								expert input you provided in advance of the big day. We had a
-								wonderful day and that is in no small part to your work. The
-								Signet Library is a terrific venue and had a real ‘wow’ factor
-								for our guests. In addition to that the service, food, lighting
-								and indeed everything was from the very top drawer. You are an
-								‘Event Designer Extraordinaire’" by{" "}
-								<span className="font-bold">Mugabo</span>
-							</h1>
-							<h1>
-								"You did a wonderful job for us and I am very grateful for the
-								expert input you provided in advance of the big day. We had a
-								wonderful day and that is in no small part to your work. The
-								Signet Library is a terrific venue and had a real ‘wow’ factor
-								for our guests. In addition to that the service, food, lighting
-								and indeed everything was from the very top drawer. You are an
-								‘Event Designer Extraordinaire’" by{" "}
-								<span className="font-bold">Mugabo</span>
-							</h1>
-							<h1>
-								"You did a wonderful job for us and I am very grateful for the
-								expert input you provided in advance of the big day. We had a
-								wonderful day and that is in no small part to your work. The
-								Signet Library is a terrific venue and had a real ‘wow’ factor
-								for our guests. In addition to that the service, food, lighting
-								and indeed everything was from the very top drawer. You are an
-								‘Event Designer Extraordinaire’" by{" "}
-								<span className="font-bold">Mugabo</span>
-							</h1>
-							<h1>
-								"You did a wonderful job for us and I am very grateful for the
-								expert input you provided in advance of the big day. We had a
-								wonderful day and that is in no small part to your work. The
-								Signet Library is a terrific venue and had a real ‘wow’ factor
-								for our guests. In addition to that the service, food, lighting
-								and indeed everything was from the very top drawer. You are an
-								‘Event Designer Extraordinaire’" by{" "}
-								<span className="font-bold">Mugabo</span>
-							</h1>
-							<h1>
-								"You did a wonderful job for us and I am very grateful for the
-								expert input you provided in advance of the big day. We had a
-								wonderful day and that is in no small part to your work. The
-								Signet Library is a terrific venue and had a real ‘wow’ factor
-								for our guests. In addition to that the service, food, lighting
-								and indeed everything was from the very top drawer. You are an
-								‘Event Designer Extraordinaire’" by{" "}
-								<span className="font-bold">Mugabo</span>
-							</h1>
+							{loading ? (
+								<div className="w-full h-full flex items-center justify-end ml-36">
+									<InfinitySpin
+										visible={true}
+										width="500"
+										color="#4793AF"
+										ariaLabel="infinity-spin-loading"
+									/>
+								</div>
+							) : (
+								<>
+									{Array.isArray(testimony) &&
+										testimony?.map((one, index) => (
+											<h1 key={index}>
+												"{one.testimony}" by{" "}
+												<span className="font-bold">{one.name}</span>
+											</h1>
+										))}
+								</>
+							)}
 						</div>
 					</div>
 					{openModel && (
@@ -126,7 +128,8 @@ const Testimonies = () => {
 							></div>
 							<div className="sm:w-[70%] md:w-[60%] lg:w-[50%] w-[90%] absolute -mt-[120%]  ite:-mt-[110%] sum:-mt-[60%] sm:-mt-[30%] md:-mt-[40%] lg:-mt-[20%] p-5 flex flex-col items-center">
 								<form
-									onSubmit={handleSubmit}
+									onSubmit={handleSubmit(addTestimony)}
+									noValidate
 									className="flex flex-col gap-4 w-full z-50 absolute bg-[#4793af] p-5 px-10 pb-10 md:px-24 md:pb-10 rounded-xl shadow-xl"
 								>
 									<h2 className="sm:text-xl text-sm font-bold mb-4 text-center">
@@ -135,25 +138,28 @@ const Testimonies = () => {
 									<input
 										type="text"
 										placeholder="Name"
-										value={name}
-										onChange={(e) => setName(e.target.value)}
+										{...register("name", { required: "name is required" })}
 										className="border p-2 rounded bg-white text-black"
 									/>
-									{nameError && <div className="text-red-500">{nameError}</div>}
+									<p className="text-red-500">{errors.name?.message}</p>
 									<textarea
 										placeholder="Your Testimony"
-										value={testimonial}
-										onChange={(e) => setTestimonial(e.target.value)}
+										{...register("testimony", {
+											required: "Testmony is required",
+											validate: validTestimony,
+										})}
 										className="border p-2 rounded bg-white md:max-h-36 h-36 text-black"
 									/>
-									{testimonialError && (
-										<div className="text-red-500">{testimonialError}</div>
+									{errors.testimony && (
+										<div className="text-red-500">
+											Testimony must be atleast 10 words
+										</div>
 									)}
 									<button
 										type="submit"
 										className="bg-[#40679e] text-white p-2 rounded"
 									>
-										Submit
+										{loading ? "Submitting..." : "Submit"}
 									</button>
 								</form>
 							</div>
@@ -161,6 +167,18 @@ const Testimonies = () => {
 					)}
 				</div>
 			</div>
+			<ToastContainer
+				position="top-right"
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="colored"
+			/>
 		</>
 	);
 };
