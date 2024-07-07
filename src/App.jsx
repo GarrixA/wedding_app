@@ -10,6 +10,7 @@ import { Login } from "./components/Elements/Login";
 import { Story } from "./components/Elements/Story";
 import Testimonies from "./components/Elements/Testimonies";
 import Layout from "./components/Reusable/Layout";
+import Nopage from "./components/Reusable/Nopage";
 
 function App() {
 	const location = useLocation();
@@ -34,6 +35,7 @@ function App() {
 						<Route path="testimonies" element={<AdminTestimony />} />
 						<Route path="albums" element={<Albums />} />
 					</Route>
+					<Route path="*" element={<Nopage />}></Route>
 				</Routes>
 			</div>
 		</>

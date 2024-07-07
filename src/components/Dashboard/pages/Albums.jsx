@@ -105,7 +105,7 @@ function Albums() {
 									<InfinitySpin
 										visible={true}
 										width="500"
-										color="#FFFFFF"
+										color="#4793AF"
 										ariaLabel="infinity-spin-loading"
 									/>
 								</div>

@@ -13,6 +13,7 @@ import {
 
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hooks";
 import { InfinitySpin } from "react-loader-spinner";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
 	const [photos, setPhotos] = useState([]);
@@ -60,7 +61,6 @@ function Dashboard() {
 		fetchPhotos();
 		getTestimony();
 	}, [dispatch]);
-	console.log(testimony);
 
 	return (
 		<>
@@ -118,6 +118,23 @@ function Dashboard() {
 						</div>
 					</div>
 				</div>
+			</div>
+			<div className="buttons max-w-[90%] m-auto mt-20 flex items-center justify-around">
+				<Link to={"/dashboard/photoes"}>
+					<button className="bg-[#4793AF] _shadow px-6 py-2 rounded text-white font-bold _buttons">
+						Preview images
+					</button>
+				</Link>
+				<Link to={"/"}>
+					<button className="bg-[#4793AF] _shadow px-6 py-2 rounded text-white font-bold _buttons">
+						Preview albums
+					</button>
+				</Link>
+				<Link to={"/testimonies"}>
+					<button className="bg-[#4793AF] _shadow px-6 py-2 rounded text-white font-bold _buttons">
+						Preview testimonies
+					</button>
+				</Link>
 			</div>
 			<ToastContainer
 				position="top-right"
