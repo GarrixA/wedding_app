@@ -64,11 +64,11 @@ const Album = () => {
 
 	if (loading) {
 		return (
-			<div className="fixed inset-0 w-full h-full flex items-center justify-center">
+			<div className="fixed inset-0 w-full h-full flex items-center justify-center pl-64">
 				<InfinitySpin
 					visible={true}
 					width="500"
-					color="#FFFFFF"
+					color="#4793AF"
 					ariaLabel="infinity-spin-loading"
 				/>
 			</div>
@@ -94,7 +94,7 @@ const Album = () => {
 					<div className="albums_container bg-white h-[72vh] md:h-[80vh] pb-12 xl:pb-0 overflow-hidden overflow-y-scroll">
 						<div className="album_image grid sm:grid-cols-2  lg:grid-cols-4 gap-4 md:grid-cols-3 md:max-h-screen xl:max-h-[75vh]">
 							{albumImage?.photos?.map((item, idx) => (
-								<div className="img p-4 w-full h-full" key={idx}>
+								<div className="img p-4 w-full h-96" key={idx}>
 									<img
 										src={item.url}
 										alt="image"

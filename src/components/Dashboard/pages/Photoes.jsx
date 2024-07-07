@@ -154,14 +154,14 @@ const Photoes = () => {
 								<InfinitySpin
 									visible={true}
 									width="500"
-									color="#FFFFFF"
+									color="#4793AF"
 									ariaLabel="infinity-spin-loading"
 								/>
 							</div>
 						) : (
 							<>
 								{photos.map((item, idx) => (
-									<div className="img p-4 w-full h-full" key={idx}>
+									<div className="img p-4 w-full h-96" key={idx}>
 										<img
 											src={item.url}
 											alt="image"
