@@ -13,7 +13,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<div className="main-nav flex items-center justify-between py-4 z-20 w-full px-[10%] shadow-md">
+		<div className="main-nav flex items-center relative overflow-hidden bg-[#DFF6FF] justify-between py-4 z-20 w-full px-[10%] shadow-md">
 			<div className="owners">
 				<Link to={"/"}>
 					<motion.h1

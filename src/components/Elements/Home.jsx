@@ -56,22 +56,18 @@ const Home = () => {
 			case 0:
 			case 1:
 			case 2:
-				return `album/${currentAlbum._id}`;
+				return `album/${currentAlbum?._id}`;
 			default:
 				return "#";
 		}
 	};
-
-	if (!currentAlbum) {
-		return null;
-	}
 	if (loading) {
 		return (
-			<div className="fixed inset-0 w-full h-full flex items-center justify-center">
+			<div className="fixed inset-0 w-full h-full flex items-center justify-center bg-[#DFF6FF] pl-64">
 				<InfinitySpin
 					visible={true}
 					width="500"
-					color="#FFFFFF"
+					color="#4793AF"
 					ariaLabel="infinity-spin-loading"
 				/>
 			</div>
@@ -80,24 +76,48 @@ const Home = () => {
 
 	return (
 		<>
-			<motion.div className="home relative mx-[10%] h-screen sm:h-[90vh] flex items-center mt-5">
+			<div></div>
+			<motion.div className="home relative mx-[10%] h-screen lg:h-screen sm:h-[90vh] flex items-center mt-5">
 				<AnimatePresence>
 					<motion.h1
-						key={currentAlbum.name}
-						className="font-black w-full top-[30%] text-sm sm:text-4xl absolute text-center sm:w-full sm:top-8 z-50 sm:z-10 sm:bg-transparent bg-blue-500 px-4 rounded sm:mt-0 lg:top-4"
+						key={currentAlbum?.name}
+						className="font-black w-full top-[50%] text-sm sm:text-4xl absolute text-center sm:w-full  z-50  bg-[#FECB64] lg:bg-transparent flex items-center justify-center lg:justify-start px-4 rounded  lg:top-4"
 						variants={titleVariants}
 						initial="initial"
 						animate="animate"
 						exit="exit"
 					>
-						{currentAlbum.name}
+						{currentAlbum?.name}
 					</motion.h1>
 				</AnimatePresence>
-				<motion.div className="relative w-full h-[70%] sm:h-[90%] p-3">
+				<motion.div className="relative w-full h-[70%] sm:h-[90%] p-3 -top-24 lg:-top-10 flex items-center justify-center">
 					<AnimatePresence custom={direction}>
 						<motion.div
-							key={currentAlbum.photos[0]}
-							className="absolute h-full justify-end items-start left-0 w-full md:w-full md:px-[10%] lg:px-[0%] lg:left-[50%] p-4 lg:w-[50%] lg:justify-center cursor-pointer rounded overflow-hidden flex flex-col sm:px-0 px-4"
+							key={currentAlbum?.photos[0]}
+							className="absolute -top-[20%] lg:top-[30%] z-0 h-96 w-full lg:w-[50%] md:px-[10%] lg:px-[0%] left-0 lg:left-[50%] cursor-pointer rounded overflow-hidden flex flex-col justify-center px-4"
+							variants={slideVariants}
+							initial="initial"
+							animate="animate"
+							exit="exit"
+							custom={direction}
+						>
+							<Link
+								to={getAlbumRoute(currentIndex)}
+								className="relative w-full h-full"
+							>
+								<img
+									src={currentAlbum?.photos[0]}
+									alt={`Photo 1 of the album`}
+									className="w-full h-full object-cover border sm:border-none sm:rounded rounded-3xl"
+								/>
+								<div className="imageOverlay absolute inset-0 bg-black bg-opacity-20 hidden sm:flex"></div>
+							</Link>
+						</motion.div>
+					</AnimatePresence>
+					<AnimatePresence custom={direction}>
+						<motion.div
+							key={currentAlbum?.photos[1]}
+							className=" absolute z-10 sm:w-full md:w-full lg:w-[60%] lg:h-[60%] lg:left-[20%] cursor-pointer sm:rounded rounded-3xl overflow-hidden shadow-md left-0 w-full h-[50%] md:h-[50%] xl:h-[70%] sm:mt-0"
 							variants={slideVariants}
 							initial="initial"
 							animate="animate"
@@ -106,11 +126,11 @@ const Home = () => {
 						>
 							<Link to={getAlbumRoute(currentIndex)} className="relative">
 								<img
-									src={currentAlbum.photos[0]}
+									src={currentAlbum?.photos[1]}
 									alt={
-										currentAlbum.photos[0] ||
-										currentAlbum.photos[1] ||
-										currentAlbum.photos[2]
+										currentAlbum?.photos[0] ||
+										currentAlbum?.photos[1] ||
+										currentAlbum?.photos[2]
 									}
 									className="w-full h-full object-cover border sm:border-none sm:mt-0 sm:rounded rounded-3xl"
 								/>
@@ -120,8 +140,8 @@ const Home = () => {
 					</AnimatePresence>
 					<AnimatePresence custom={direction}>
 						<motion.div
-							key={currentAlbum.photos[1]}
-							className="blockquote absolute top-[25%] md:top-[25%] xl:top-[18%] z-10 sm:w-full md:w-full lg:w-[60%] lg:h-[50%] lg:left-[20%] cursor-pointer sm:rounded rounded-3xl overflow-hidden shadow-md left-0 w-full h-[50%] md:h-[50%] xl:h-[70%] sm:mt-0"
+							key={currentAlbum?.photos[2]}
+							className="absolute -bottom-[20%] lg:bottom-[25%] h-96 justify-start items-start left-0 sm:w-full md:w-full md:px-[10%] lg:px-[0%] lg:w-[50%] lg:left-[0%] lg:justify-center cursor-pointer rounded overflow-hidden flex flex-col sm:px-0 px-4"
 							variants={slideVariants}
 							initial="initial"
 							animate="animate"
@@ -130,37 +150,10 @@ const Home = () => {
 						>
 							<Link to={getAlbumRoute(currentIndex)} className="relative">
 								<img
-									src={currentAlbum.photos[1]}
-									alt={
-										currentAlbum.photos[0] ||
-										currentAlbum.photos[1] ||
-										currentAlbum.photos[2]
-									}
+									src={currentAlbum?.photos[2]}
+									alt={`Photo ${currentIndex} of the album`}
 									className="w-full h-full object-cover border sm:border-none sm:mt-0 sm:rounded rounded-3xl"
-								/>
-								<div className="imageOverlay absolute inset-0 bg-black bg-opacity-20 hidden sm:flex"></div>
-							</Link>
-						</motion.div>
-					</AnimatePresence>
-					<AnimatePresence custom={direction}>
-						<motion.div
-							key={currentAlbum.photos[2]}
-							className="absolute h-full justify-start items-start left-0 sm:w-full md:w-full md:px-[10%] lg:px-[0%] lg:w-[50%] lg:left-[0%] lg:justify-center cursor-pointer rounded overflow-hidden flex flex-col sm:px-0 px-4"
-							variants={slideVariants}
-							initial="initial"
-							animate="animate"
-							exit="exit"
-							custom={direction}
-						>
-							<Link to={getAlbumRoute(currentIndex)} className="relative">
-								<img
-									src={currentAlbum.photos[2]}
-									alt={
-										currentAlbum.photos[0] ||
-										currentAlbum.photos[1] ||
-										currentAlbum.photos[2]
-									}
-									className="w-full h-full object-cover border sm:border-none sm:mt-0 sm:rounded rounded-3xl"
+									style={{ objectFit: "cover" }}
 								/>
 								<div className="imageOverlay absolute inset-0 bg-black bg-opacity-20 hidden sm:flex"></div>
 							</Link>
@@ -169,13 +162,13 @@ const Home = () => {
 				</motion.div>
 				<button
 					onClick={() => handlePrev(setCurrentIndex, setDirection, album)}
-					className="prev absolute sm:-left-[8%] -left-[10%] top-[35%] md:top-[45%] transform -translate-y-1/2 bg-black text-white sm:p-2 p-1 rounded-full z-50"
+					className="prev absolute sm:-left-[8%] -left-[10%] top-[50%] md:top-[45%] transform -translate-y-1/2 bg-black text-white sm:p-2 p-1 rounded-full z-50"
 				>
 					<GrPrevious />
 				</button>
 				<button
 					onClick={() => handleNext(setCurrentIndex, setDirection, album)}
-					className="next absolute sm:-right-[8%] -right-[10%] top-[35%] md:top-[45%] transform -translate-y-1/2 bg-black text-white sm:p-2 p-1 rounded-full z-50"
+					className="next absolute sm:-right-[8%] -right-[10%] top-[50%] md:top-[45%] transform -translate-y-1/2 bg-black text-white sm:p-2 p-1 rounded-full z-50"
 				>
 					<GrNext />
 				</button>

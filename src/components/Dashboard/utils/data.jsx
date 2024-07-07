@@ -2,7 +2,6 @@ import { MdDashboard } from "react-icons/md";
 import { BiSolidPhotoAlbum } from "react-icons/bi";
 import { FaSwatchbook } from "react-icons/fa6";
 import { FaImages } from "react-icons/fa6";
-import { TbLogout } from "react-icons/tb";
 
 import image1 from "../../Images/Jacaranda-Country-club-wedding-photographer-florida-venue-sonju-diana-marcos12.jpg";
 import image2 from "../../Images/Jacaranda-Country-club-wedding-photographer-florida-venue-sonju-diana-marcos14.jpg";
@@ -33,10 +32,6 @@ export const SideBarData = [
 		icon: <FaImages />,
 		name: "Images",
 		href: "/dashboard/photoes",
-	},
-	{
-		icon: <TbLogout />,
-		name: "Logout",
 	},
 ];
 
