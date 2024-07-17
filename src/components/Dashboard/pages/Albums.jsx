@@ -92,7 +92,7 @@ function Albums() {
 					<div className="top flex justify-between rounded-md px-8 w-full py-2 ml-4 font-bold text-2xl">
 						<h1>{album.length} Albums </h1>
 						<button
-							className="flex items-center gap-2 bg-[#4793af] text-white tex-md py-1 px-4 rounded-md"
+							className="flex items-center gap-2 bg-[#4793af] text-white text-sm md:text-lg py-1 px-4 rounded-md"
 							onClick={() => openModal(null)}
 						>
 							Add <IoMdAddCircle />
@@ -129,7 +129,7 @@ function Albums() {
 											</div>
 											{deleteModal && deleteAlbumId === item.id && (
 												<div className="fixed w-full h-full bg-black/10 inset-0 flex justify-center items-center">
-													<div className="alert w-1/4 h-1/5 bg-white flex flex-col gap-2 py-4">
+													<div className="alert w-4/5 md:w-3/5 lg:w-1/4 h-1/5 bg-white flex flex-col gap-2 py-4">
 														<h1 className=" flex items-center text-center text-xl font-semibold justify-center gap-2">
 															<IoMdAlert className="text-3xl text-[#ffcc65]" />
 															Delete Album
@@ -139,13 +139,13 @@ function Albums() {
 														</h1>
 														<div className="buttons flex items-center justify-center gap-4 h-full">
 															<button
-																className="text-xl flex items-center justify-center font-semibold bg-blue-700 rounded text-white px-6 py-1"
+																className="text-sm md:text-xl flex items-center justify-center font-semibold bg-blue-700 rounded text-white px-6 py-1"
 																onClick={() => deleteAlbum(item.id)}
 															>
 																{load ? "Deleting..." : "Yes"}
 															</button>
 															<button
-																className="text-xl font-semibold border border-green-700 rounded px-4 py-1"
+																className="text-sm md:text-xl font-semibold border border-green-700 rounded px-4 py-1"
 																onClick={() => toggleDeleteModal(null)}
 															>
 																No

@@ -78,7 +78,7 @@ const Album = () => {
 	return (
 		<>
 			<div className="wrapper">
-				<div className="w-full max-w-[95%] m-auto">
+				<div className="w-full h- max-w-[95%] m-auto">
 					<div className="navigations_container p-2 sm:p-4 bg-white rounded-tr-xl rounded-tl-xl mt-2 sm:mt-5 shadow-xl w-full border-b">
 						<div className="navigations flex space-x-10 justify-between items-center">
 							<NavLink className="p-2 text-lg font-bold flex flex-col space-x-10 hover:bg-orange-500 rounded">
@@ -91,7 +91,7 @@ const Album = () => {
 							</Link>
 						</div>
 					</div>
-					<div className="albums_container bg-white h-[72vh] md:h-[80vh] pb-12 xl:pb-0 overflow-hidden overflow-y-scroll">
+					<div className="albums_container bg-white h-[72vh] md:h-[80vh] pb-12 xl:pb-0 overflow-hidden">
 						<div className="album_image grid sm:grid-cols-2  lg:grid-cols-4 gap-4 md:grid-cols-3 md:max-h-screen xl:max-h-[75vh]">
 							{albumImage?.photos?.map((item, idx) => (
 								<div className="img p-4 w-full h-96" key={idx}>

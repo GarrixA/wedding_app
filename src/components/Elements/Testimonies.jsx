@@ -15,6 +15,8 @@ import image from "../Images/Jacaranda-Country-club-wedding-photographer-florida
 import { InfinitySpin } from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { IoIosArrowBack } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const Testimonies = () => {
 	const [openModel, setOpenModel] = useState(false);
@@ -78,8 +80,8 @@ const Testimonies = () => {
 				<div className="testimonies  flex justify-between mx-[10%] py-8 sm:flex-row flex-col bg-[#dff5ff] lg:mt-10">
 					<div className="left_testimonial rounded overflow-hidden flex-1 relative">
 						<div className="add_testimonial p-5 absolute w-full h-full flex items-center justify-center z-40">
-							<div className="add flex flex-col items-center">
-								<h1 className=" text-2xl font-bold">Add testimonial</h1>
+							<div className="add text-white flex flex-col items-center">
+								<h1 className="-2xl font-bold">Add testimony</h1>
 								<RiAddCircleLine
 									className="w-24 h-24 cursor-pointer"
 									onClick={handleModel}
@@ -94,12 +96,16 @@ const Testimonies = () => {
 						/>
 					</div>
 					<div className="right_testimonial flex-1 bg-white rounded-r overflow-hidden">
-						<h1 className="text-center text-xl font-bold bg-[#40679E] p-2">
-							{testimony?.length} Testimonies
+						<h1 className="text-center text-lg lg:text-xl font-bold bg-[#40679E] p-2 relative">
+							{testimony?.length} Testimonies <Link to={"/"}>
+								<button className="border-2 px-1 lg:px-4 py-0 rounded-md flex items-center text-sm lg:text-lg lg:gap-2 absolute lg:right-2 top-2 text-white">
+									<IoIosArrowBack /> Back
+								</button>
+							</Link>
 						</h1>
-						<div className="testimony text-black p-4 flex flex-col gap-4 max-h-[70vh] overflow-y-auto h-full pb-16">
+						<div className="testimony text-black p-4 flex flex-col gap-4 max-h-[22vh] md:max-h-[60vh] overflow-y-auto h-full pb-16">
 							{loading ? (
-								<div className="w-full h-full flex items-center justify-end ml-36">
+								<div className=" w-full h-full flex items-center justify-end ml-36">
 									<InfinitySpin
 										visible={true}
 										width="500"
