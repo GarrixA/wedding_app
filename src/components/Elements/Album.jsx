@@ -78,7 +78,7 @@ const Album = () => {
 	return (
 		<>
 			<div className="wrapper">
-				<div className="w-full h- max-w-[95%] m-auto">
+				<div className="w-full max-w-[95%] m-auto">
 					<div className="navigations_container p-2 sm:p-4 bg-white rounded-tr-xl rounded-tl-xl mt-2 sm:mt-5 shadow-xl w-full border-b">
 						<div className="navigations flex space-x-10 justify-between items-center">
 							<NavLink className="p-2 text-lg font-bold flex flex-col space-x-10 hover:bg-orange-500 rounded">
