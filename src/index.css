@@ -24,8 +24,61 @@
 @tailwind utilities;
 
 .album_image {
-	overflow: scroll;
+	overflow-y: scroll;
+	box-sizing: content-box;								;
 }
+
+.album_image::-webkit-scrollbar {
+	width: 5px;
+  }
+  
+.album_image::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey; 
+	border-radius: 10px;
+  }
+   
+.album_image::-webkit-scrollbar-thumb {
+background: #4793AF; 
+border-radius: 10px;
+}
+
+.testimony{
+	overflow-y: scroll;
+	box-sizing: content-box;
+}
+
+.testimony::-webkit-scrollbar {
+	width: 5px;
+  }
+  
+.testimony::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey; 
+	border-radius: 10px;
+  }
+   
+.testimony::-webkit-scrollbar-thumb {
+background: #4793AF; 
+border-radius: 10px;
+}
+.single_paragraph{
+	overflow-y: scroll;
+	box-sizing: content-box;
+}
+
+.single_paragraph::-webkit-scrollbar {
+	width: 5px;
+  }
+  
+.single_paragraph::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey; 
+	border-radius: 10px;
+  }
+   
+.single_paragraph::-webkit-scrollbar-thumb {
+background: #4793AF; 
+border-radius: 10px;
+}
+
 
 body {
 	margin: 0;
@@ -33,6 +86,7 @@ body {
 	overflow-x: hidden;
 	overflow: hidden;
 	color: #252522;
+	
 }
 
 .next:hover,

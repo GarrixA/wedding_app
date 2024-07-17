@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { API } from "../../../utils/api";
-import { IoMdArrowRoundBack } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -32,6 +32,11 @@ export const Login = () => {
 
 	return (
 		<div className="flex items-center justify-center w-full h-screen bg-[#DCF1FB] text-black _shadow">
+			<Link to={"/"}>
+								<button className="border-2 border-gray-700 px-1 lg:px-4 py-0 rounded-md flex items-center text-sm lg:text-lg lg:gap-2 absolute lg:right-2 top-2 text-gray-700">
+									<IoIosArrowBack /> Back
+								</button>
+							</Link>
 			<div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
 				<h2 className="text-2xl font-bold text-center mb-6">Login</h2>
 				<form onSubmit={handleSubmit(Submit)}>

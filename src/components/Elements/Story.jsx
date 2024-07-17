@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import before from "../Images/Jacaranda-Country-club-wedding-photographer-florida-venue-sonju-diana-marcos31.jpg";
 import after from "../Images/Jacaranda-Country-club-wedding-photographer-florida-venue-sonju-diana-marcos30.jpg";
+import { IoIosArrowBack } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 export const Story = () => {
 	const [visibleSection, setVisibleSection] = useState("before");
@@ -9,9 +11,13 @@ export const Story = () => {
 		<>
 			<div className="wrapper h-[100vh]">
 				<div className="parent_container sm:max-w-[80%] sm:mx-[10%] bg-white text-black m-6 mt-10 rounded overflow-hidden h-[78vh]">
-					<h1 className="text-2xl font-bold text-center p-2 bg-[#40679E] text-white">
-						Our story
-					</h1>
+					<div className="text-2xl font-bold text-center p-2 bg-[#40679E] text-white relative">
+						Our story <Link to={"/"}>
+								<button className="border-2 px-1 lg:px-4 py-0 rounded-md flex items-center text-sm lg:text-lg lg:gap-2 absolute lg:right-2 top-2 text-white">
+									<IoIosArrowBack /> Back
+								</button>
+							</Link>
+					</div>
 					<div className="flex flex-col md:flex-row md:gap-10 p-6 ">
 						<div className="options flex flex-row md:flex-col lg:w-[27%] sm:py-6 gap-4">
 							<div
@@ -48,7 +54,7 @@ export const Story = () => {
 						</div>
 						{visibleSection === "before" && (
 							<div className="story_before md:w-[73%]">
-								<div className="single_paragraph flex flex-col  bg-white text-black my-6 tec:pb-20 ite:pb-28 sum:pb-44 sm:pb-72 md:pb-0 rounded overflow-hidden h-[65vh] overflow-y-auto">
+								<div className="single_paragraph flex flex-col  bg-white text-black my-6 tec:pb-20 ite:pb-28 sum:pb-44 sm:pb-72 md:pb-0 rounded h-[40vh] md:h-[62vh] ">
 									<h2 className="text-xl italic font-bold">How They Met</h2>
 									<p>
 										It was a sunny afternoon in June when Fatma first laid eyes

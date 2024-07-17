@@ -105,18 +105,18 @@ const AlbumModal = ({ modalOpen, closeModal, album }) => {
 
 	return (
 		<>
-			<div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50">
+			<div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 lg:hidden">
 				<div
 					className="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"
 					onClick={closeModal}
 				></div>
-				<div className="modal-container bg-white w-[40%] mx-auto rounded shadow-lg z-50 overflow-y-auto">
+				<div className="modal-container bg-white w-4/5 md:w-[40%] mx-auto rounded shadow-lg z-50 overflow-y-auto">
 					<div className="modal-content py-4 text-left px-6">
 						<span
 							className="modal-close cursor-pointer absolute top-0 right-0 p-4"
 							onClick={closeModal}
 						>
-							<IoClose className="text-7xl bg-white rounded-full _close" />
+							<IoClose className="text-4xl lg:text-7xl bg-white rounded-full _close" />
 						</span>
 						<div className="modal-body p-4 flex flex-col gap-2 text-lg font-semibold">
 							<h1 className="text-center">

@@ -6,9 +6,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 function DashboardNavBar() {
-	const [menu, setMenu] = useState(false);
-	const toggleMenu = () => {
-		setMenu(!menu);
+	const [modal, setModal] = useState(false);
+	const toggleModal = () => {
+		setModal(!modal);
 	};
 
 	const navigate = useNavigate();
@@ -37,11 +37,11 @@ function DashboardNavBar() {
 						alt="admin_profile "
 						className="w-20 h-20 rounded-full"
 					/>
-					<SlMenu className="text-2xl lg:hidden" onClick={() => toggleMenu()} />
+					<SlMenu className="text-2xl lg:hidden" onClick={() => toggleModal()} />
 				</div>
 			</div>
 			<AnimatePresence>
-				{menu && (
+				{modal && (
 					<motion.div
 						className="w-full h-full  backdrop-blur inset-0 fixed flex justify-center z-[60] _shadow"
 						initial="closed"
@@ -52,35 +52,35 @@ function DashboardNavBar() {
 						<div className="close absolute right-0 w-full flex justify-end px-2">
 							<AiFillCloseCircle
 								className="sm:text-6xl text-5xl mt-5"
-								onClick={() => toggleMenu()}
+								onClick={() => toggleModal()}
 							/>
 						</div>
 						<div className="others lg:hidden gap-3 flex flex-col bg-white h-1/2 w-4/5 sm:w-1/2 mt-24 text-xl font-semibold p-10">
 							<Link
 								to={"/dashboard"}
 								className="_links"
-								onClick={() => toggleMenu()}
+								onClick={() => toggleModal()}
 							>
 								<h1 className=" cursor-pointer font-bold">Dashboard</h1>
 							</Link>
 							<Link
 								to={"/dashboard/albums"}
 								className="_links"
-								onClick={() => toggleMenu()}
+								onClick={() => toggleModal()}
 							>
 								<h1 className=" cursor-pointer font-bold">Albums</h1>
 							</Link>
 							<Link
 								to={"dashboard/testimonies"}
 								className="_links"
-								onClick={() => toggleMenu()}
+								onClick={() => toggleModal()}
 							>
 								<h1 className=" cursor-pointer font-bold">Testimonies</h1>
 							</Link>
 							<Link
 								to={"/dashboard/photoes"}
 								className="_links"
-								onClick={() => toggleMenu()}
+								onClick={() => toggleModal()}
 							>
 								<h1 className=" cursor-pointer font-bold lg:pl-16">Images</h1>
 							</Link>
