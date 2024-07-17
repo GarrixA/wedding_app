@@ -6,7 +6,7 @@ function DashboardRightSide() {
 	let auth = { token: true };
 
 	return (
-		<div className="w-[85%] max-h-screen fixed right-0">
+		<div className="w-full lg:w-[85%] max-h-screen fixed right-0">
 			<DashboardNavBar />
 			{auth.token ? <Outlet /> : <Navigate to={"/login"} />}
 		</div>

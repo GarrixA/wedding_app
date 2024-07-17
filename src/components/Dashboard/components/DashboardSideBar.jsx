@@ -17,15 +17,13 @@ function DashboardSideBar() {
 	}, [token, navigate]);
 
 	const handleLogOut = () => {
-		console.log("Logging out..."); // Debugging log
 		localStorage.removeItem("token");
 		localStorage.removeItem("user");
-		console.log("Token and user removed from localStorage."); // Debugging log
 		navigate("/login");
 	};
 
 	return (
-		<div className="w-[15%] fixed h-screen left-0 shadow-xl flex flex-col">
+		<div className="w-[15%] fixed h-screen left-0 shadow-xl lg:flex flex-col hidden">
 			<div className="profile w-full rounded-full p-4 flex flex-col items-center">
 				<img
 					src={admin_image}
