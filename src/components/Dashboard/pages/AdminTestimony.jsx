@@ -80,7 +80,7 @@ function AdminTestimony() {
 
 	return (
 		<>
-			<div className="bg-white max-w-[95%] m-auto mt-10 rounded-md max-h-[80vh] overflow-hidden overflow-y-auto">
+			<div className="bg-white max-w-[95%] m-auto mt-10 rounded-md max-h-[80vh] testimony overflow-hidden overflow-y-auto">
 				<div className="testimony p-4 flex flex-col space-y-5">
 					{Array.isArray(testimony)
 						? testimony.map((item, idx) => (
@@ -100,7 +100,7 @@ function AdminTestimony() {
 									</div>
 									{deleteModal && (
 										<div className="fixed w-full h-full bg-black/10 inset-0 flex justify-center items-center">
-											<div className="alert w-1/4 h-1/5 bg-white flex flex-col gap-2 py-4">
+											<div className="alert w-4/6 sm:w-2/5 lg:w-1/4 h-1/4 bg-white flex flex-col gap-2 py-4">
 												<h1 className=" flex items-center text-center text-xl font-semibold justify-center gap-2">
 													{" "}
 													<IoMdAlert className="text-3xl text-[#ffcc65]" />{" "}

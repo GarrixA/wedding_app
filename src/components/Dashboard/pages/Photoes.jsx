@@ -135,7 +135,7 @@ const Photoes = () => {
 	return (
 		<>
 			<div className="w-full h-full max-w-[95%] m-auto">
-				<div className="navigations_container p-4 bg-white rounded-tr-xl rounded-tl-xl mt-10 shadow-xl w-full border-b">
+				<div className="navigations_container bg-white rounded-tr-xl rounded-tl-xl mt-5 shadow-xl w-full border-b">
 					<div className="navigations flex space-x-10">
 						{title.map((item, index) => (
 							<NavLink
@@ -229,7 +229,7 @@ const Photoes = () => {
 						)}
 					</div>
 					<button
-						className="absolute right-8 -top-12 bg-[#4793af] px-4 py-1 text-xl rounded-sm font-semibold text-white"
+						className="absolute right-8 -top-10 mt-1 bg-[#4793af] px-4 py-1 text-sm rounded-sm font-semibold text-white"
 						onClick={toggleFormModal}
 					>
 						Add photo
