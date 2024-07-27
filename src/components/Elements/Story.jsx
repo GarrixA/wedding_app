@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-// import before from "../Images/Jacaranda-Country-club-wedding-photographer-florida-venue-sonju-diana-marcos31.jpg";
-import images from "../../../utils/imageUtils"
+import before from "../Images/Jacaranda-Country-club-wedding-photographer-florida-venue-sonju-diana-marcos31.jpg";
+import after from "../Images/Jacaranda-Country-club-wedding-photographer-florida-venue-sonju-diana-marcos30.jpg";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 
@@ -10,7 +10,7 @@ export const Story = () => {
 	return (
 		<>
 			<div className="wrapper h-[100vh]">
-				<div className="parent_container sm:max-w-[80%] sm:mx-[10%] bg-white text-black m-6 mt-5 rounded overflow-hidden h-[78vh]">
+				<div className="parent_container sm:max-w-[80%] sm:mx-[10%] bg-white text-black m-6 mt-10 rounded overflow-hidden h-[78vh]">
 					<div className="text-2xl font-bold text-center p-2 bg-[#40679E] text-white relative">
 						Our story <Link to={"/"}>
 								<button className="border-2 px-1 lg:px-4 py-0 rounded-md flex items-center text-sm lg:text-lg lg:gap-2 absolute lg:right-2 top-2 text-white">
@@ -18,20 +18,20 @@ export const Story = () => {
 								</button>
 							</Link>
 					</div>
-					<div className="flex flex-col md:flex-row md:gap-10 px-4 ">
+					<div className="flex flex-col md:flex-row md:gap-10 p-6 ">
 						<div className="options flex flex-row md:flex-col lg:w-[27%] sm:py-6 gap-4">
 							<div
 								className="before sm:w-full tec:w-[50%] sum:w-[20%] flex flex-1 items-center justify-center cursor-pointer "
 								onClick={() => setVisibleSection("before")}
 							>
-								<div className="before_marriage relative  sm:h-52 flex flex-col items-center justify-end sm:p-0 p-5 tec:p-2">
-									<h1 className="absolute text-center text-white text-sm leading-[12px] tec:text-[10px] ite:text-[12px] sum:text-sm lg:text-sm font-bold bg-[#40679E] sm:px-2 tec:px-0 w-full">
+								<div className="before_marriage relative  sm:h-56 flex flex-col items-center justify-center sm:p-0 p-5 tec:p-2">
+									<h1 className="absolute text-center text-white text-sm leading-[12px] tec:text-[10px] ite:text-[12px] sum:text-sm lg:text-xl font-bold bg-[#40679E] sm:px-2 tec:px-0 w-[60%] tec:w-[80%] rounded">
 										Our story before marriage
 									</h1>
 									<img
-										src={images.before}
+										src={before}
 										alt="image_before"
-										className="w-full h-full object-cover rounded"
+										className="w-full h-full object-cover"
 									/>
 								</div>
 							</div>
@@ -40,14 +40,14 @@ export const Story = () => {
 								className="after sm:w-full tec:w-[50%] sum:w-[20%] flex flex-1 items-center justify-center cursor-pointer "
 								onClick={() => setVisibleSection("after")}
 							>
-								<div className="after_marriage relative  sm:h-52 flex flex-col items-center justify-end sm:p-0 p-5 tec:p-2">
-									<h1 className="absolute text-center text-white text-sm leading-[12px] tec:text-[10px] ite:text-[12px] sum:text-sm lg:text-sm font-bold bg-[#40679E] sm:px-2 tec:px-0 w-full">
+								<div className="after_marriage relative  sm:h-56 flex flex-col items-center justify-center sm:p-0 p-5 tec:p-2">
+									<h1 className="absolute text-center text-white text-sm leading-[12px] tec:text-[10px] ite:text-[12px] sum:text-sm lg:text-xl font-bold bg-[#40679E] sm:px-2 tec:px-0 w-[60%] tec:w-[80%] rounded">
 										Our story after marriage
 									</h1>
 									<img
-										src={images.adminImage2}
+										src={after}
 										alt="image_after"
-										className="w-full h-full object-cover rounded"
+										className="w-full h-full object-cover"
 									/>
 								</div>
 							</div>
