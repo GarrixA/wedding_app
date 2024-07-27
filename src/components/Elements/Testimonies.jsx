@@ -11,7 +11,7 @@ import {
 	getTestimonySuccess,
 } from "../../redux/feature/testimonySlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
-import images from '../../../utils/imageUtils'
+import image from "../Images/Jacaranda-Country-club-wedding-photographer-florida-venue-sonju-diana-marcos30.jpg";
 import { InfinitySpin } from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -36,7 +36,6 @@ const Testimonies = () => {
 			await getTestimony();
 			setOpenModel(false);
 			toast.success(response.data.message);
-			reset()
 		} catch (error) {
 			console.error("Failed to add testimony", error);
 			dispatch(addTestimonyFailure("Failed to add testimony"));
@@ -65,7 +64,7 @@ const Testimonies = () => {
 
 	const validTestimony = (text) => {
 		const wordCount = text.trim().split(/\s+/).length;
-		return wordCount >= 0 || "Testimony must be at least 10 words";
+		return wordCount >= 10 || "Testimony must be at least 10 words";
 	};
 
 	const handleModel = () => {
@@ -73,13 +72,13 @@ const Testimonies = () => {
 	};
 
 	const form = useForm();
-	const { register,reset, handleSubmit, formState } = form;
+	const { register, control, handleSubmit, formState } = form;
 	const { errors } = formState;
 	return (
 		<>
 			<div className="wrapper h-[100vh]">
-				<div className="testimonies  flex justify-between mx-[10%] py-8 lg:flex-row flex-col bg-[#dff5ff] lg:mt-0">
-					<div className="left_testimonial rounded overflow-hidden flex-1 relative lg:max-h-[70vh]">
+				<div className="testimonies  flex justify-between mx-[10%] py-8 sm:flex-row flex-col bg-[#dff5ff] lg:mt-10">
+					<div className="left_testimonial rounded overflow-hidden flex-1 relative">
 						<div className="add_testimonial p-5 absolute w-full h-full flex items-center justify-center z-40">
 							<div className="add text-white flex flex-col items-center">
 								<h1 className="-2xl font-bold">Add testimony</h1>
@@ -91,9 +90,9 @@ const Testimonies = () => {
 						</div>
 						<div className="port absolute w-full h-full bg-black opacity-30"></div>
 						<img
-							src={images.adminImage1}
+							src={image}
 							alt="image"
-							className="w-full object-cover h-40 md:h-80 lg:h-full"
+							className="w-full object-cover h-full"
 						/>
 					</div>
 					<div className="right_testimonial flex-1 bg-white rounded-r overflow-hidden">
@@ -104,7 +103,7 @@ const Testimonies = () => {
 								</button>
 							</Link>
 						</h1>
-						<div className="testimony text-black p-4 flex flex-col gap-4 max-h-[35vh] md:max-h-[45vh] lg:max-h-[60vh] overflow-y-auto h-full">
+						<div className="testimony text-black p-4 flex flex-col gap-4 max-h-[22vh] md:max-h-[60vh] overflow-y-auto h-full pb-16">
 							{loading ? (
 								<div className=" w-full h-full flex items-center justify-end ml-36">
 									<InfinitySpin
@@ -128,12 +127,12 @@ const Testimonies = () => {
 						</div>
 					</div>
 					{openModel && (
-						<div className="modal rounded shadow-lg fixed inset-0 w-full h-full -top-10 z-50 flex flex-col items-center justify-center">
+						<div className="modal rounded shadow-lg absolute w-full h-[101vh] -ml-[10%] -mt-[8%] z-50 flex flex-col items-center justify-center">
 							<div
 								className="port absolute w-full h-full bg-transparent backdrop-filter backdrop-blur-lg mt-20"
 								onClick={handleModel}
 							></div>
-							<div className="sm:w-[70%] md:w-[60%] lg:w-[50%] w-[90%] absolute -mt-[80%] sm:-mt-[30%] md:-mt-[40%] lg:-mt-[20%] p-5 flex flex-col items-center">
+							<div className="sm:w-[70%] md:w-[60%] lg:w-[50%] w-[90%] absolute -mt-[120%]  ite:-mt-[110%] sum:-mt-[60%] sm:-mt-[30%] md:-mt-[40%] lg:-mt-[20%] p-5 flex flex-col items-center">
 								<form
 									onSubmit={handleSubmit(addTestimony)}
 									noValidate

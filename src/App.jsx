@@ -11,7 +11,6 @@ import { Story } from "./components/Elements/Story";
 import Testimonies from "./components/Elements/Testimonies";
 import Layout from "./components/Reusable/Layout";
 import Nopage from "./components/Reusable/Nopage";
-import Privacy from "./components/Dashboard/pages/Privacy";
 
 function App() {
 	const location = useLocation();
@@ -35,7 +34,6 @@ function App() {
 						<Route path="photoes" element={<Photoes />} />
 						<Route path="testimonies" element={<AdminTestimony />} />
 						<Route path="albums" element={<Albums />} />
-						<Route path="privacy" element={<Privacy/>}/>
 					</Route>
 					<Route path="*" element={<Nopage />}></Route>
 				</Routes>

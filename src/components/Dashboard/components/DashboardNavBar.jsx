@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import images from '../../../../utils/imageUtils'
+import admin_image from "../../Images/Jacaranda-Country-club-wedding-photographer-florida-venue-sonju-diana-marcos18.jpg";
 import { SlMenu } from "react-icons/sl";
 import { menuVariants } from "../../../../utils/variants";
 import { AnimatePresence, motion } from "framer-motion";
@@ -33,9 +33,9 @@ function DashboardNavBar() {
 				<h1 className="text-lg font-bold">Hello admin</h1>
 				<div className="profile flex items-center space-x-8">
 					<img
-						src={images.adminImage2}
+						src={admin_image}
 						alt="admin_profile "
-						className="w-16 h-16 rounded-full"
+						className="w-20 h-20 rounded-full"
 					/>
 					<SlMenu className="text-2xl lg:hidden" onClick={() => toggleModal()} />
 				</div>
@@ -71,7 +71,7 @@ function DashboardNavBar() {
 								<h1 className=" cursor-pointer font-bold">Albums</h1>
 							</Link>
 							<Link
-								to={"/dashboard/testimonies"}
+								to={"dashboard/testimonies"}
 								className="_links"
 								onClick={() => toggleModal()}
 							>
@@ -83,13 +83,6 @@ function DashboardNavBar() {
 								onClick={() => toggleModal()}
 							>
 								<h1 className=" cursor-pointer font-bold lg:pl-16">Images</h1>
-							</Link>
-							<Link
-								to={"/dashboard/privacy"}
-								className="_links"
-								onClick={() => toggleModal()}
-							>
-								<h1 className=" cursor-pointer font-bold lg:pl-16">Privacy</h1>
 							</Link>
 							<Link onClick={handleLogOut} className="_links">
 								<h1 className=" cursor-pointer font-bold lg:pl-16">Log out</h1>
