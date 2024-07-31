@@ -52,13 +52,10 @@ const Home = () => {
 	const currentAlbum = album[currentIndex];
 
 	const getAlbumRoute = (index) => {
-		switch (index) {
-			case 0:
-			case 1:
-			case 2:
-				return `album/${currentAlbum?._id}`;
-			default:
-				return "#";
+		if (typeof index === "number" && index >= 0) {
+			return `album/${currentAlbum?._id}`;
+		} else {
+			return "#";
 		}
 	};
 	if (loading) {
@@ -148,7 +145,10 @@ const Home = () => {
 							exit="exit"
 							custom={direction}
 						>
-							<Link to={getAlbumRoute(currentIndex)} className="relative w-full h-full">
+							<Link
+								to={getAlbumRoute(currentIndex)}
+								className="relative w-full h-full"
+							>
 								<img
 									src={currentAlbum?.photos[2]}
 									alt={`Photo ${currentIndex} of the album`}

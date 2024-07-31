@@ -1,4 +1,3 @@
-// validation.js
 export const validateForm = (name, testimonial) => {
 	let errors = {
 		nameError: "",
