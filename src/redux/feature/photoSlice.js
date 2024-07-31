@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-	data: [], // Ensure data is an array to match expected structure
+	data: [],
 	loading: false,
 	error: null,
 };
@@ -15,7 +15,7 @@ const PhotoSlice = createSlice({
 			state.error = null;
 		},
 		fetchPhotoSuccess(state, action) {
-			state.data = action.payload; // Ensure this matches the API response structure
+			state.data = action.payload;
 			state.loading = false;
 		},
 		fetchPhotoFailure(state, action) {

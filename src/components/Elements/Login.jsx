@@ -33,10 +33,10 @@ export const Login = () => {
 	return (
 		<div className="flex items-center justify-center w-full h-screen bg-[#DCF1FB] text-black _shadow">
 			<Link to={"/"}>
-								<button className="border-2 border-gray-700 px-1 lg:px-4 py-0 rounded-md flex items-center text-sm lg:text-lg lg:gap-2 absolute lg:right-2 top-2 text-gray-700">
-									<IoIosArrowBack /> Back
-								</button>
-							</Link>
+				<button className="border-2 border-gray-700 px-1 lg:px-4 py-0 rounded-md flex items-center text-sm lg:text-lg lg:gap-2 absolute lg:right-2 top-2 text-gray-700">
+					<IoIosArrowBack /> Back
+				</button>
+			</Link>
 			<div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
 				<h2 className="text-2xl font-bold text-center mb-6">Login</h2>
 				<form onSubmit={handleSubmit(Submit)}>
@@ -89,16 +89,16 @@ export const Login = () => {
 				</form>
 				<div className="mt-4 text-center">
 					<Link to={"#"} className="text-indigo-600 cursor-pointer">
-						Forgot password?
+						{/* Forgot password? */}
 					</Link>
 				</div>
 				<div className="mt-4 text-center">
-					<p className="text-sm">
+					{/* <p className="text-sm">
 						Don't have an account?{" "}
 						<Link to={"# "} className="text-indigo-600 cursor-pointer">
 							Sign up
 						</Link>
-					</p>
+					</p> */}
 				</div>
 			</div>
 			<ToastContainer
