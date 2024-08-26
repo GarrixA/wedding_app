@@ -180,12 +180,12 @@ const Photoes = () => {
 													</div>
 													{deleteModal && deleteAlbumId === item.id && (
 														<div className="fixed w-full h-full bg-black/10 inset-0 flex justify-center items-center">
-															<div className="alert w-1/4 h-1/5 bg-white flex flex-col gap-2 py-4">
+															<div className="alert w-3/4 sm:w-1/2 md:w-2/5 lg:w-4/12 xl:h-1/4 h-1/5 bg-white flex flex-col gap-2 py-4">
 																<h1 className=" flex items-center text-center text-xl font-semibold justify-center gap-2">
 																	<IoMdAlert className="text-3xl text-[#ffcc65]" />
 																	Delete photo
 																</h1>
-																<h1 className="p-2 text-[1rem] font-semibold">
+																<h1 className="p-2 text-[1rem] font-semibold text-center">
 																	Are you sure you want to delete this?
 																</h1>
 																<div className="buttons flex items-center justify-center gap-4 h-full">
@@ -237,7 +237,7 @@ const Photoes = () => {
 				</div>
 			</div>
 			{formModal && (
-				<div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 lg:hidden">
+				<div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50">
 					<div
 						className="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"
 						onClick={toggleFormModal}
