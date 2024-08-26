@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { SideBarData } from "../utils/data";
 import { NavLink, useNavigate } from "react-router-dom";
-import images from '../../../../utils/imageUtils'
+import images from "../../../../utils/imageUtils";
 import { TbLogout } from "react-icons/tb";
 
 function DashboardSideBar() {
@@ -34,15 +34,20 @@ function DashboardSideBar() {
 			<div className="links bg-white h-full">
 				{SideBarData.map((item, idx) => (
 					<div key={idx} className="flex flex-col gap-4">
-						{
-							<NavLink
-								to={item.href}
-								className="px-4 m-2 py-4 flex gap-2 items-center hover:bg-[#4793AF] hover:text-white rounded-md"
-							>
-								{item.icon}
-								{item.name}
-							</NavLink>
-						}
+						<NavLink
+							to={item.href}
+							end
+							className={({ isActive }) =>
+								`px-4 m-2 py-4 flex gap-2 items-center rounded-md ${
+									isActive
+										? "bg-[#4793AF] text-white"
+										: "hover:bg-[#4793AF] hover:text-white"
+								}`
+							}
+						>
+							{item.icon}
+							{item.name}
+						</NavLink>
 					</div>
 				))}
 				<div className="flex flex-col gap-4 cursor-pointer">
